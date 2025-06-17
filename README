@@ -1,0 +1,101 @@
+# InstantText OCR
+
+**InstantText OCR** is a high-performance desktop utility that allows Windows users to quickly capture screen regions and extract all recognized text—without the need for manual highlighting or additional steps. Built using Rust and Tauri for native performance, it integrates advanced OCR and computer vision techniques to deliver immediate, accurate text extraction from screenshots.
+
+---
+
+## Features
+
+- **Instant OCR**: Immediately extracts all text from any screen region you select—no need to manually highlight text afterward, unlike macOS screenshot previews.
+- **Tauri + Rust Backend**: Lightweight and efficient native application with minimal memory overhead and fast startup.
+- **OpenCV.js + Tesseract.js**: Preprocesses images for enhanced OCR accuracy and reliability using industry-standard vision pipelines.
+- **TypeScript + React Frontend**: Clean, responsive, and accessible UI built with modern web tooling.
+- **Global Hotkey Integration**: Trigger OCR with a configurable global shortcut (e.g., `Ctrl+Shift+O`).
+- **Clipboard Automation**: Recognized text is immediately copied to the clipboard, streamlining the workflow for note-taking, documentation, and translation tasks.
+- **Local Screenshot Archive**: Each screenshot is automatically saved to a neatly organized local directory with timestamp-based naming.
+- **Clipboard History**: Text recognized from screenshots is stored for future reference and export.
+- **Autostart on Boot**: Optionally launches the app in the background when Windows starts.
+- **Sentry Integration**: Full error logging and crash reporting via Sentry to support ongoing stability and maintainability.
+
+---
+
+## Why InstantText?
+
+Unlike macOS, which requires users to manually preview, highlight, and copy text from screenshots, InstantText streamlines the process by automatically extracting and copying all text immediately after selection. This reduces friction and enhances productivity for users who frequently need to pull text from PDFs, images, or UI components that are not selectable.
+
+---
+
+## Architecture
+
+- **Frontend**: React + TypeScript + Tailwind CSS
+- **Desktop Shell**: Tauri (Rust-based)
+- **OCR Pipeline**: Tesseract.js with OpenCV.js preprocessing
+- **System Integration**:
+  - Global hotkeys via Tauri plugin
+  - Autostart via Windows registry
+  - Clipboard management via Tauri API
+  - Crash/error tracking with Sentry SDK
+
+---
+
+## Folder Structure
+
+InstantText/
+├── src-tauri/ # Rust backend for Tauri
+│ ├── commands.rs # Tauri commands and system hooks
+│ └── main.rs # Main application entry point
+├── src/ # React frontend (TypeScript)
+│ ├── components/
+│ ├── hooks/
+│ ├── pages/
+│ └── utils/
+├── screenshots/ # Saved screenshots, auto-organized
+├── public/
+├── .sentryclirc # Sentry config
+├── tauri.conf.json # Tauri settings (autostart, updater, etc.)
+├── package.json
+└── README.md
+
+yaml
+Copy
+Edit
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (>=18)
+- Rust + Cargo
+- Tauri CLI: `cargo install tauri-cli`
+- [Tesseract.js core data files](https://github.com/naptha/tesseract.js#installation)
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/instanttext-ocr.git
+cd instanttext-ocr
+npm install
+npm run tauri dev
+Configuration
+Autostart on Boot
+Enabled by default using Tauri's auto-launch API. Modify tauri.conf.json under the tauri.autostart key to disable.
+
+Global Hotkey
+Configured via Tauri Plugin (e.g., Ctrl+Shift+O). Customizable in settings (TBD UI).
+
+Error Monitoring
+Sentry is configured using the DSN found in .sentryclirc. All runtime exceptions and UI errors are logged for developer feedback and debugging.
+
+Roadmap
+Custom highlight overlays (optional post-OCR preview)
+
+OCR language selection
+
+PDF export of screenshots with selectable text
+
+Cloud sync and clipboard history export
+
+License
+MIT License. See LICENSE file for details.

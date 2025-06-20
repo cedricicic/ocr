@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "ocr",
+  "productName": "InstantText OCR",
   "version": "0.1.0",
-  "identifier": "cc.cedri.ocr",
+  "identifier": "cc.cedri.instanttext-ocr",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -12,9 +12,13 @@
   "app": {
     "windows": [
       {
-        "title": "ocr",
-        "width": 800,
-        "height": 600
+        "title": "InstantText OCR",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true
       }
     ],
     "security": {
